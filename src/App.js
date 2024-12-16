@@ -10,6 +10,18 @@ const App = () => {
     index === facts.length - 1 ? setIndex(0) : setIndex(index + 1);
   };
 
+  useEffect(() => {
+    console.log("Running useEffect");
+    const factDelay = setTimeout(() => {
+      console.log("in Timeout function");
+      setShowName(true);
+    }, 2000);
+
+    return () => {
+      clearTimeout(factDelay);
+    };
+  }, [showName]);
+
   return (
     <div className="App">
       {facts && (
